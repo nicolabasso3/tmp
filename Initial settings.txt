@@ -1,0 +1,20 @@
+
+Starting Operations:
+
+git clone https://gitlab.dei.unipd.it/anemos/scaling-eureka.git
+
+cd /home/user/scaling-eureka/tb/bgp4/
+
+wget https://lxd.s3.eu-south-1.amazonaws.com/frr.tar.gz
+
+sudo su
+
+
+==========================================================
+TestBed Creation and Configuration:
+
+python3 bgp4.py TB           ( In case you need to start again from scratch, remember to destroy the testbed with the script  destroy_tb.py in /home/user/scaling-eureka/tb folder. (use python3 destroy_tb.py TB)).
+
+lxc list
+
+lxc exec TB-0 bash

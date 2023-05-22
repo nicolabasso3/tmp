@@ -1,0 +1,38 @@
+
+
+ip link add dev loDummy type dummy
+ip addr add 2.2.2.2/32 dev loDummy
+
+
+vtysh
+
+configure terminal
+interface loDummy
+ip address 2.2.2.2/32
+exit
+
+interface eth1
+ip address 10.0.0.13/30
+exit
+
+interface eth0
+ip address 10.0.0.6/30
+exit
+
+router bgp 4
+no bgp ebgp-requires-policy
+neighbor 10.0.0.5 remote-as 2
+neighbor 10.0.0.5 update-source 10.0.0.6
+neighbor 10.0.0.14 remote-as 3
+neighbor 10.0.0.14 update-source 10.0.0.14
+
+address-family ipv4 unicast
+redistribute connected
+neighbor 10.0.0.5 next-hop-self
+neighbor 10.0.0.5 soft-reconfiguration inbound
+neighbor 10.0.0.14 next-hop-self
+neighbor 10.0.0.14 soft-reconfiguration inbound
+exit
+exit
+exit
+write
