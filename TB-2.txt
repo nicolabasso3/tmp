@@ -1,26 +1,20 @@
 vtysh
 
 configure terminal
-
-interface eth1
+interface eth0
 ip address 10.0.0.10/30
 exit
 
-interface eth0
+interface eth1
 ip address 10.0.0.14/30
 exit
-
-
-
-
-
 
 router bgp 3
 no bgp ebgp-requires-policy
 neighbor 10.0.0.9 remote-as 1
 neighbor 10.0.0.9 update-source 10.0.0.10
 neighbor 10.0.0.13 remote-as 4
-neighbor 10.0.0.13 update-source 10.0.0.14
+neighbor 10.0.0.13 update-source 10.0.0.13
 
 address-family ipv4 unicast
 redistribute connected

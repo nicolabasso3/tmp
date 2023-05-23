@@ -1,7 +1,11 @@
+
+ip link add dev loDummy type dummy
+ip addr add 1.1.1.1/32 dev loDummy
+
+
 vtysh
 
 configure terminal
-
 interface loDummy
 ip address 1.1.1.1/32
 exit
@@ -14,13 +18,12 @@ interface eth1
 ip address 10.0.0.9/30
 exit
 
-
 router bgp 1
 no bgp ebgp-requires-policy
 neighbor 10.0.0.2 remote-as 2
 neighbor 10.0.0.2 update-source 10.0.0.1
 neighbor 10.0.0.10 remote-as 3
-neighbor 10.0.0.10 update-source 10.0.0.9
+neighbor 10.0.0.10 update-source 10.0.0.10
 
 address-family ipv4 unicast
 redistribute connected
