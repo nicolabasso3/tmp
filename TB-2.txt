@@ -1,6 +1,11 @@
+
+
+
+
 vtysh
 
 configure terminal
+
 interface eth0
 ip address 10.0.0.10/30
 exit
@@ -26,3 +31,8 @@ exit
 exit
 exit
 write
+
+
+show ip bgp summary
+show bgp ipv4 neighbor 10.0.0.9 received-routes
+show bgp ipv4 neighbor 10.0.0.13 received-routes
